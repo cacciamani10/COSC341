@@ -1,8 +1,12 @@
+# h1.py
+# Jacob Cacciamani
+# 01/19/20
+# COSC 341
 import random
-import math
 from datetime import datetime
 
-
+# Takes a parameter cents and returns a tuple
+# containing quarters, dimes, nickels, and pennies respectively
 def change(cents):
     result = []
     if cents < 0:
@@ -15,10 +19,12 @@ def change(cents):
     result.append(cents % 5)
     return tuple(result)
 
+# Removes quotes from the passed string parameter
 def strip_quotes(s):
     s = s.replace('"', '')
     return s.replace("'", "")
 
+# Psuedo-randomly swaps characters until the string is scrambled up
 def scramble(s):
     if scramble.seed:
         random.seed(datetime.now())
@@ -33,6 +39,8 @@ def scramble(s):
     return res
 scramble.seed = True
 
+# Returns an iterator for a tuple
+# of a series of powers based on parameters
 def powers(base, limit):
     res = []
     if base < 1 or limit < 1:
@@ -45,29 +53,23 @@ def powers(base, limit):
         exp += 1
     return iter(tuple(res))
 
-def say(*word):
-    if len(word) > 1:
-        raise TypeError('input expected at most 1 arguments, got', len(word))
-    elif len(word) == 1:
-        return say()
-    else:
-        return say(' ')
-
+# A recursive function with an inner lambda
+def say(word=''):
+    if word == '': 
+        return word
+    return lambda y=None: word if y is None else say(word + ' ' + y)
+    
+# Returns a sorted list of all pythagorean triples
+# under a limit
 def triples(limit):
     res = []
     if limit < 1:
         return res
-    for a in range(limit):
-        for b in range(1, a):
-            c = math.sqrt(a ** 2 + b ** 2)
-            #print(a, '+', b, '=', c)
-            if int(c) > limit:
-                #print('limit surpassed', c, limit)
-                return res
-            if c == int(c):
-                tup = (b, a, int(c))
-                #print(tup, 'added')
-                res.append(tup)
+    for c in range(1, limit + 1):
+        for b in range(1, c):
+            for a in range(1, b):
+                if a * a + b * b == c * c:
+                    tup = (a, b, c)
+                    res.append(tup)
+    res.sort(key = lambda tup: tup[0])
     return res
-
-print(say('hi')('there')())
