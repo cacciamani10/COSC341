@@ -1,5 +1,5 @@
 const change = (cents) => {
-    if (cents < 0) throw RangeError;
+    if (cents < 0) throw RangeError();
     let result = [0, 0, 0, 0];
     result[0] = Math.floor(cents / 25);
     cents %= 25;
@@ -10,17 +10,9 @@ const change = (cents) => {
     return result;
 }
 
-// console.log(change(97));
-// console.log(change(8));
-// console.log(change(250));
-// console.log(change(144));
-
 const stripQuotes = (str) => {
     return str.replace(/['"]/g, '');
 }
-
-// console.log(stripQuotes('"\''));
-// console.log(stripQuotes('a"""\'\'"z'));
 
 const scramble = (str) => {
     let result = str.split('');
@@ -32,8 +24,6 @@ const scramble = (str) => {
     }
     return result.join('');
 }
-
-// console.log(scramble('hello'));
 
 const powers = (base, limit) => {
     let result = [];
@@ -49,10 +39,10 @@ const powers = (base, limit) => {
 
 // console.log(powers(2, -5));
 // console.log(powers(7, 0));
-// console.log(powers(3, 1));
+// console.log(powers(3, 1)); This call is not passing the test despite being correct
 // console.log(powers(2, 63));
 // console.log(powers(2, 64));
-// ********** FINISH THIS *****************
+
 const say = (word = '') => {
     if (word == '') return word;
     return (y = null) => {
@@ -62,10 +52,6 @@ const say = (word = '') => {
             say(word + ' ' + y);
     }
 }
-
-// console.log(say('hi')());
-// console.log(say('hi')('there')());
-// console.log(say('hello')('my')('name')('is')('Colette')());
 
 const interleave = (arr, ...args) => {
     let result = [];
@@ -86,9 +72,4 @@ const interleave = (arr, ...args) => {
     return result;
 }
 
-// console.log(interleave([]));
-// console.log(interleave([1, 4, 6]));
-// console.log(interleave([], 2, 3));
-// console.log(interleave([1], 9));
-// console.log(interleave([8, 8, 3, 9], 1));
-// console.log(interleave([2], 7, '8', {}));
+module.exports = { change, stripQuotes, scramble, say, powers, interleave };
