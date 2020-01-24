@@ -1,0 +1,19 @@
+{
+  "name": "h2",
+  "version": "1.0.0",
+  "description": "cosc 341 homework 2",
+  "main": "h2.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cacciamani10/COSC341.git"
+  },
+  "author": "Jacob Cacciamani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cacciamani10/COSC341/issues"
+  },
+  "homepage": "https://github.com/cacciamani10/COSC341#readme"
+}
